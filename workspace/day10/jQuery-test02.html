@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul class="car">
+      <li>벤츠g바겐</li>
+      <li>벤틀리</li>
+      <li>마세라티</li>
+    </ul>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script>
+    const $lists = $('li');
+    const $ul = $('ul.car');
+    console.log($ul);
+    $ul.css('list-style', 'none');
+    console.log($lists);
+    console.log($ul.children());
+    $ul.children().first().css('color', 'red');
+    $ul.children().last().css('color', 'white');
+    //jQuery객체를 []로 접근하며 JS 객체로 변경된다.
+    // $($lists[0]).css('color', 'red');
+    // $lists.eq(0).css('color', 'red');
+
+    //children() 직계자손
+    //find() 자식요소모두에서 검색
+    //closest() 부모요소에서 검색 
+  </script>
+</html>

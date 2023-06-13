@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" onchange="print(this,pr)" placeholder="반복할기호,반복횟수" />
+    <p id="out"></p>
+  </body>
+  <script>
+    function print(input, pr) {
+      let a = input.value.split(',');
+      let result = a[0].repeat(Number(a[1]));
+
+      //   for (let i = 0; i < Number(a[1]); i++) {
+      //     result += a[0];
+      //   }
+      if (pr) {
+        pr(result);
+      }
+    }
+    function pr(result) {
+      document.getElementById('out').innerText = `${result}`;
+      console.log(result);
+    }
+  </script>
+</html>

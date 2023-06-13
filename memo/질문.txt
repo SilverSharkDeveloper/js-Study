@@ -1,0 +1,2 @@
+consle, alert setTimeout은 소속없이 사용가능
+Object.keys()는 소속 필요 왜지?

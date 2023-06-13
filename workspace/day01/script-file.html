@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>script 태그 안에서 JS 코드 작성</title>
+  </head>
+  <body>
+    <h3>마우스를 올려보세요</h3>
+    <hr />
+    <img
+      src="./8666656_check_circle_icon.png"
+      onmouseover="changeImg('over',this)"
+      onmouseout="changeImg('out',this)"
+    />
+  </body>
+  <script>
+    function changeImg(e, object) {
+      object.src =
+        e == 'over' ? '8666778_download_down_save_icon.png' : '8666656_check_circle_icon.png';
+    }
+  </script>
+</html>

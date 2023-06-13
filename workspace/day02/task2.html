@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h3>월화수목금토일</h3>
+    <hr />
+    <form name="data">
+      <input type="text" placeholder="요일을 입력해주세요" name="day" />
+      <button type="button" onclick="getDay()">확인!</button>
+      <p id="inner"></p>
+    </form>
+  </body>
+  <script>
+    function getDay() {
+      let data = document.data;
+      switch (data.day.value) {
+        case '월':
+        case '화':
+        case '수':
+        case '목':
+          document.getElementById('inner').innerHTML = `${data.day.value}요일은 출근!`;
+          break;
+        case '금':
+        case '토':
+        case '일':
+          document.getElementById('inner').innerHTML = `${data.day.value}요일은 쉬는날!`;
+          break;
+        default:
+          document.getElementById('inner').innerHTML = `똑바로된 요일로 쓰세요^^`;
+          break;
+      }
+    }
+  </script>
+</html>

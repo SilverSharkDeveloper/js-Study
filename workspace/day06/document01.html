@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>클래스 이름을 이용한 선택</title>
+  </head>
+  <body>
+    <h1>클래스 이름을 이용한 선택</h1>
+    <ul>
+      <li class="odd">첫 번째 아이템 이에요!</li>
+      <li class="even">두 번째 아이템 이에요!</li>
+      <li class="odd">세 번째 아이템 이에요!</li>
+      <li class="even">네 번째 아이템 이에요!</li>
+      <li class="odd">다섯 번째 아이템 이에요!</li>
+    </ul>
+  </body>
+  <script>
+    const odds = document.getElementsByClassName('odd');
+    const evens = document.getElementsByClassName('even');
+
+    console.log(odds);
+    console.log(evens);
+    // for (let i = 0; i < odds.length; i++) {
+    //   odds[i].style.color = 'red';
+    // }
+    for (item of odds) {
+      item.style.color = 'red';
+    }
+
+    for (item of evens) {
+      item.style.color = 'blue';
+    }
+    
+  </script>
+</html>

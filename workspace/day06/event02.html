@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #square-container {
+        margin: 0 auto;
+        width: 500px;
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+      }
+
+      div.square {
+        width: 150px;
+        height: 150px;
+        border: 0.5px solid black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: aqua;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <input type="text" name="name" , placeholder="이름" />
+      <input type="button" value="등록" />
+    </div>
+    <div id="square-container">
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+    </div>
+  </body>
+  <script>
+    const button = document.querySelector(`input[type ="button"]`);
+    button.addEventListener('click', function () {
+      const input = document.querySelector(`input[name ="name"]`);
+      const squares = document.querySelectorAll('.square');
+      const words = input.value.split('');
+      squares.forEach((el) => (el.innerHTML = ''));
+
+      squares.forEach((el, i) =>
+        el.addEventListener('click', function () {
+          thisinnerHTML = words[i] ? words[i] : '♥';
+        })
+      );
+    });
+  </script>
+</html>

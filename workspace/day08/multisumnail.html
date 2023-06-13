@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>섬네일</title>
+    <style>
+      .label {
+        width: 200px;
+        height: 200px;
+        background-image: url('add.png');
+        background-size: 100%;
+      }
+
+      #file {
+        display: none;
+      }
+      .image-container {
+        width: 1000px;
+        height: 150px;
+      }
+    </style>
+  </head>
+  <body>
+    <label for="file">
+      <div class="label"></div>
+    </label>
+    <div class="image-container"></div>
+
+    <input type="file" multiple id="file" />
+  </body>
+
+  <script>
+    //input 태그
+    const add = document.querySelector('#file');
+
+    const images_container = document.querySelector('.image-container');
+
+    FileList.prototype.forEach = Array.prototype.forEach;
+
+    //파일 선택시 이벤트 발생
+    add.addEventListener('change', (e) => {
+      //span태그안에 x 가 눌리면 그 인덱스값을 저장할 배열
+      let spanindex = new Array();
+      //원본 파일들 모임
+      let files = e.target.files;
+
+      //span태그 생성
+      e.target.files.forEach((el, i) => {
+        let span = document.createElement('span');
+        images_container.append(span);
+      });
+
+      //span태그들 가져오기
+      let spans = document.getElementsByTagName('span');
+
+      //리더객체
+      let reader;
+
+      //파일이여러개 이므로 한개당 처리해주어야하는 로직 작성
+      e.target.files.forEach((el, i) => {
+        //fileReader 은 하나에 파일만 처리 가능
+        reader = new FileReader();
+
+        //파일을 읽어왔을때 발생할 이벤트
+        reader.addEventListener('load', (eve) => {
+          //x표시 생성
+          let x = document.createElement('div');
+          x.style.width = '25px';
+          x.style.height = '25px';
+
+          x.innerHTML = 'x';
+          x.style.position = 'absolute';
+          x.style.background = 'black';
+          x.style.top = '0px';
+          x.style.right = '0px';
+          x.style.color = 'white';
+          x.style.textAlign = 'center';
+
+          //미리 만들어놓은 span태그에 갯수만큼 이미지 업로드
+          spans[i].style.display = 'inline-block';
+          spans[i].style.position = 'relative';
+          spans[i].style.width = '100px';
+          spans[i].style.height = '100px';
+          spans[i].style.backgroundImage = `url('${eve.target.result}')`;
+          spans[i].append(x);
+
+          //x클릭시 span은 안보이게되면서 파일 내리기구현
+          x.addEventListener('click', (event) => {
+            //span 제거
+            event.target.parentElement.remove();
+
+            //span인덱스 배열에 인덱스 추가하기
+            spanindex.push(i);
+
+            //fileList는 readonly로 변경이 불가하므로 새로 fileList를 만들어 input객체에 할당해주어여함.
+            //DataTransfer객체의 fils에 파일리스트를 만들어 인풋에 fileList 를 대체해버림
+            let new_files = new DataTransfer();
+
+            Array.from(files)
+              //전체 파일에서 x버튼을 누른 인덱스의 스판태그만을 제외한 파일 담기
+              .filter((el, u) => !spanindex.includes(u))
+              .forEach((el) => new_files.items.add(el));
+            console.log(new_files.files);
+
+            //input태그요소에 files에 직접 할당
+            add.files = new_files.files;
+
+            console.log(add.files);
+          });
+        });
+
+        //각요소를 인코딩해 로딩함.
+        reader.readAsDataURL(el);
+      });
+    });
+  </script>
+</html>

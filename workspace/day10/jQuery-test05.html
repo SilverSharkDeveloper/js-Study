@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #wrap {
+        border: 1px solid black;
+        display: flex;
+        width: 200px;
+      }
+
+      div.password {
+        width: 80%;
+      }
+
+      input[name='userPassword'] {
+        border: none;
+        outline: none;
+        width: 100%;
+      }
+
+      div.eye {
+        width: 20%;
+        background-image: url('https://static.msscdn.net/ui/build/m/img/login/ic-30-show-button.svg?v=20230403125341');
+        background-size: 100%;
+        background-repeat: no-repeat;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrap">
+      <div class="password">
+        <input type="password" name="userPassword" placeholder="비밀번호" maxlength="12" />
+      </div>
+      <div class="hide eye"></div>
+    </div>
+    <button id="back" onclick="console.log(history.back())">뒤로가기</button>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script>
+    const $input = $("input[name='userPassword']");
+    const $eye = $('div.eye');
+
+    $eye.on('click', function () {
+      if ($(this).prop('classList')[0] == 'hide') {
+        $(this).css(
+          'background-image',
+          "url('https://static.msscdn.net/ui/build/m/img/login/ic-30-hide-button.svg?v=20230403125341')"
+        );
+        $(this).prop('classList').replace('hide', 'show');
+        $input.attr('type', 'text');
+      } else {
+        $(this).css(
+          'background-image',
+          "url('https://static.msscdn.net/ui/build/m/img/login/ic-30-show-button.svg?v=20230403125341')"
+        );
+        $(this).prop('classList').replace('show', 'hide');
+        $input.attr('type', 'password');
+      }
+    });
+  </script>
+</html>

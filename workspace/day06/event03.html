@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>포커스 이벤트</title>
+  </head>
+  <body>
+    <form name="join-form">
+      <div>
+        <input type="text" name="id" placeholder="아이디" autocomplete="off" class="focus-check" />
+      </div>
+      <p id="id-message" class="message"></p>
+      <div>
+        <input type="password" name="password" placeholder="비밀번호" class="focus-check" />
+      </div>
+      <p id="ps-message" class="message"></p>
+    </form>
+  </body>
+  <script>
+    const inputs = document.querySelectorAll('.focus-check');
+    const ps = document.querySelectorAll('.message');
+    const messages = ['아이디를 입력해주세요', '비밀번호를 입력해주세요'];
+    inputs.forEach((el, i) =>
+      el.addEventListener('blur', function () {
+        if (!this.value) {
+          ps[i].innerHTML = messages[i];
+          this.focus();
+        }
+      })
+    );
+  </script>
+</html>

@@ -1,0 +1,15 @@
+#table-container {
+    width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  table {
+    margin: 0 auto;
+    width: 400px;
+  }
+  td {
+    text-align: center;
+  }
+  .th {
+    background-color: yellow;
+  }

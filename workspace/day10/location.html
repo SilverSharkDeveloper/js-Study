@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>location 객체</title>
+  </head>
+  <body>
+    <button id="naver">네이버</button>
+    <button id="google">구글</button>
+    <button id="password">비밀번호 입력창</button>
+    <input type="button" id="refresh" value="새로고침" />
+  </body>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script>
+    const $buttons = $('button');
+    const $input = $('input');
+    $input.on('click', function () {
+      location.reload();
+    });
+    $buttons.on('click', function () {
+      let id = $(this).attr('id');
+      let url;
+      switch (id) {
+        case 'naver':
+          url = 'https://www.naver.com';
+
+          break;
+        case 'google':
+          url = 'https://www.google.com';
+          break;
+        case 'password':
+          url = 'jQuery-test05.html';
+          break;
+      }
+      location.href = url;
+      //덮어쓰기 뒤로가기 막아줌
+      // location.replace(url);
+    });
+  </script>
+</html>
